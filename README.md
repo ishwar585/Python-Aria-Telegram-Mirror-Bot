@@ -68,7 +68,7 @@ nano config.env
 ```
 (For above process you can edit the ```sample.env``` file by opening it in your default text editor. You will find ```sample.env``` in your directory.)  
 
-## Things you have to edit in ```sample.env``` 
+## Things you have to edit in ### ```sample.env``` 
 - Remove the first line saying:
 
 ```
