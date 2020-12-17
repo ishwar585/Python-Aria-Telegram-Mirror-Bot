@@ -1,7 +1,9 @@
 
 
 # Introduction
-This is a python-based telegram bot for mirroring files to G-Drive.
+This is a python-based telegram bot for mirroring files to G-Drive 
+You can contact me on telegram at **https://t.me/ishwar585** or **https://t.me/dp001** if you face some problems in deploying the bot
+Deploying this bot on Heroku will lead to suspension of your app/account but still if you want to try, then you can message me and I'll help you out.
 
 # Features supported:
 - Mirror direct download links to google drive
@@ -64,8 +66,11 @@ sudo snap install docker
 cp config_sample.env config.env
 nano config.env
 ```
+(For above process you can edit the ```sample.env``` file by opening it in your default text editor. You will find ```sample.env``` in your directory.)  
 
+## Things you have to edit in ```sample.env``` 
 - Remove the first line saying:
+
 ```
 _____REMOVE_THIS_LINE_____=True
 ```
@@ -77,40 +82,21 @@ Fill up rest of the fields. Meaning of each fields are discussed below:
 ```
 python3 generate_telegraph_token.py
 ```
-- **DOWNLOAD_DIR** : The path to the local folder where the downloads should be downloaded to
-- **DOWNLOAD_STATUS_UPDATE_INTERVAL** : A short interval of time in seconds after which the Mirror progress message is updated. (I recommend to keep it 5 seconds at least)  
-- **OWNER_ID** : The Telegram user ID (not username) of the owner of the bot
+- **DOWNLOAD_DIR** : The path to the local folder where the downloads should be stored temperoarily.
+- **DOWNLOAD_STATUS_UPDATE_INTERVAL** : The interval time (in seconds)in which the Mirror progress should be updated intelegram. (Keep it 5 seconds at least)
+- **OWNER_ID** : The Telegram user ID (not username) of the owner of the bot.
 - **AUTO_DELETE_MESSAGE_DURATION** : Interval of time (in seconds), after which the bot deletes it's message (and command message) which is expected to be viewed instantly. Note: Set to -1 to never automatically delete messages
-- **IS_TEAM_DRIVE** : (Optional field) Set to "True" if GDRIVE_FOLDER_ID is from a Team Drive else False or Leave it empty.
-- **USE_SERVICE_ACCOUNTS**: (Optional field) (Leave empty if unsure) Whether to use service accounts or not. For this to work see  "Using service accounts" section below.
-- **INDEX_URL** : (Optional field) Refer to https://github.com/maple3142/GDIndex/ The URL should not have any trailing '/'
+- **IS_TEAM_DRIVE** : Set to ```True``` if GDRIVE_FOLDER_ID is from a Team Drive else set it to ```false```.
+- **INDEX_URL** : (Optional field) Refer to https://github.com/maple3142/GDIndex/ (Remove ```/``` from the end of URL. For eg: google.com ~/~ )
 - **API_KEY** : This is to authenticate to your telegram account for downloading Telegram files. You can get this from https://my.telegram.org DO NOT put this in quotes.
 - **API_HASH** : This is to authenticate to your telegram account for downloading Telegram files. You can get this from https://my.telegram.org
 - **USER_SESSION_STRING** : Generate String session by [clicking here](https://generatestringsession.magneto261290.repl.run/) **OR** you can generate by running :
 ```
 python3 generate_string_session.py
 ```
-- **MEGA_API_KEY**: Mega.nz api key to mirror mega.nz links. Get it from [Mega SDK Page](https://mega.nz/sdk)
-- **MEGA_EMAIL_ID**: Your email id you used to sign up on mega.nz for using premium accounts (Leave th)
-- **MEGA_PASSWORD**: Your password for your mega.nz account 
-- **STOP_DUPLICATE_MIRROR**: (Optional field) (Leave empty if unsure) if this field is set to `True` , bot will check file in drive, if it is present in drive, downloading will ne stopped. (Note - File will be checked using filename, not using filehash, so this feature is not perfect yet)
-- **BLOCK_MEGA_LINKS**: (Optional field) If you want to remove mega.nz mirror support (bcoz it's too much buggy and unstable), set it to `True`.
-- **SHORTENER**: (Optional field) if you want to use shortener in Gdrive and index link, fill shotener url here. Examples :-
+- **USE_SERVICE_ACCOUNTS** : (Optional field) (Leave empty if unsure) Whether to use service accounts or not. For this to work see "Using service accounts" section below.
 
-> exe.io
-
-> gplinks.in
-
-> shrinkme.io
-
-> urlshortx.com
-
-> shortzon.com
-
-Note :- Above are the supported url shorteners. Except these only some url shorteners are supported. If you want to use any other url shortener then first ask me that shortener is supported or not.
-- **SHORTENER_API**: Fill your shortener api key if you are using shortener.
-
-Note: You can limit maximum concurrent downloads by changing the value of MAX_CONCURRENT_DOWNLOADS in aria.sh. By default, it's set to 4
+- Note: You can limit maximum concurrent downloads by changing the value of MAX_CONCURRENT_DOWNLOADS in aria.sh. By default, it's set to 4
  
 ## Getting Google OAuth API credential file
 
@@ -122,14 +108,18 @@ Note: You can limit maximum concurrent downloads by changing the value of MAX_CO
 - Move that file to the root of mirror-bot, and rename it to credentials.json
 - Visit [Google API page](https://console.developers.google.com/apis/library)
 - Search for Drive and enable it if it is disabled
-- Finally, run the script to generate token file (token.pickle) for Google Drive:
+- Finally, run the script to authenticate bot with Google Drive:
 ```
-pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+pip3 install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 python3 generate_drive_token.py
 ```
 ## Deploying
 
-- Start docker daemon (skip if already running):
+- Check if your docker doaemon is running using:
+```
+sudo docker ps
+```
+- If not running, then start docker daemon using:
 ```
 sudo dockerd
 ```
@@ -169,10 +159,3 @@ python3 gen_sa_accounts.py --download-keys project_id
 ```
 python3 add_to_team_drive.py -d SharedTeamDriveSrcID
 ```
-
-# Youtube-dl authentication using .netrc file
-For using your premium accounts in youtube-dl, edit the netrc file (in the root directory of this repository) according to following format:
-```
-machine host login username password my_youtube_password
-```
-where host is the name of extractor (eg. youtube, twitch). Multiple accounts of different hosts can be added each separated by a new line
