@@ -44,35 +44,32 @@ help - Get Detailed Help
 log - Bot Log [owner only]
 ```
 
-# How to deploy?
-
-## Installing requirements
+# Steps to deploy
 
 - Clone this repo:
 ```
-git clone https://github.com/magneto261290/magneto-python-aria mirror-bot/
+git clone https://github.com/ishwar585/Python-Aria-Telegram-Mirror-Bot
 cd mirror-bot
 ```
 
-- Install requirements
-For Debian based distros
+- Install requirements for Debian based distros (Ubuntu)
 ```
 sudo apt install python3
 sudo snap install docker 
 ```
-- For Arch and it's derivatives:
-```
-sudo pacman -S docker python
-```
 
 ## Setting up config file
+- Run
 ```
 cp config_sample.env config.env
+nano config.env
 ```
+
 - Remove the first line saying:
 ```
 _____REMOVE_THIS_LINE_____=True
 ```
+
 Fill up rest of the fields. Meaning of each fields are discussed below:
 - **BOT_TOKEN** : The telegram bot token that you get from @BotFather
 - **GDRIVE_FOLDER_ID** : This is the folder ID of the Google Drive Folder to which you want to upload all the mirrors.
