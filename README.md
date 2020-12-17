@@ -45,7 +45,7 @@ log - Bot Log [owner only]
 ```
 
 # How to deploy?
-Deploying is pretty much straight forward and is divided into several steps as follows:
+
 ## Installing requirements
 
 - Clone this repo:
