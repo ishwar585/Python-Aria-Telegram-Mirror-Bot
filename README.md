@@ -51,7 +51,7 @@ log - Bot Log [owner only]
 - Clone this repo:
 ```
 git clone https://github.com/ishwar585/Python-Aria-Telegram-Mirror-Bot
-cd mirror-bot
+cd Python-Aria-Telegram-Mirror-Bot
 ```
 
 - Install requirements for Debian based distros (Ubuntu)
@@ -82,6 +82,7 @@ Fill up rest of the fields. Meaning of each fields are discussed below:
 ```
 python3 generate_telegraph_token.py
 ```
+ If you get an error saying "ModuleNotFoundError: No module named 'telegraph'" Then enter ```pip3 install telegraph```
 - **DOWNLOAD_DIR** : The path to the local folder where the downloads should be stored temperoarily.
 - **DOWNLOAD_STATUS_UPDATE_INTERVAL** : The interval time (in seconds)in which the Mirror progress should be updated intelegram. (Keep it 5 seconds at least)
 - **OWNER_ID** : The Telegram user ID (not username) of the owner of the bot.
